@@ -21,6 +21,13 @@ describe("<TodoForm />", () => {
   });
 
   it("calls onInsert and clears input", () => {
+    /*
+        여기서 사용한 jest.fn() 은 jest 에서 제공하는 mock 함수입니다. 
+        이 함수를 사용하면 이 함수가 호출 된 다음 
+        toBeCalled 또는 toBeCalledWith 같은 matcher 를 사용해서 함수가 호출됐는지, 
+        호출 됐다면 어떤 파라미터로 호출 됐는지 
+        이런 것들을 쉽게 확인 할 수 있습니다.
+     */
     const onInsert = jest.fn();
     const { getByText, getByPlaceholderText } = render(
       <TodoForm onInsert={onInsert} />
