@@ -35,4 +35,6 @@ describe("<Counter />", () => {
     expect(number).toHaveTextContent("-2"); // jest-dom 의 확장 matcher 사용
     expect(number.textContent).toBe("-2"); // textContent 를 직접 비교
   });
+  // [이벤트 다루기]
+  // fireEvent.change(myInput, { target: { value: 'hello world' } }); 
 });
