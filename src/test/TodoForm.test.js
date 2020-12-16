@@ -28,8 +28,7 @@ describe("<TodoForm />", () => {
   });
 
   it("changes input", () => {
-    const { getByPlaceholderText } = render(<TodoForm />);
-    const input = getByPlaceholderText("할 일을 입력하세요");
+    const { input } = setup();
     fireEvent.change(input, {
       target: {
         value: "TDD 배우기",
@@ -47,11 +46,7 @@ describe("<TodoForm />", () => {
         이런 것들을 쉽게 확인 할 수 있습니다.
      */
     const onInsert = jest.fn();
-    const { getByText, getByPlaceholderText } = render(
-      <TodoForm onInsert={onInsert} />
-    );
-    const input = getByPlaceholderText("할 일을 입력하세요");
-    const button = getByText("등록");
+    const { input, button } = setup({ onInsert });
     // 수정하고
     fireEvent.change(input, {
       target: {
