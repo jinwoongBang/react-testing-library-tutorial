@@ -23,9 +23,20 @@ describe("<TodoItem />", () => {
     };
   };
 
+  // 삭제 버튼과 Todo 항목이 있는지 확인
   it("has span and button", () => {
     const { span, button } = setup();
     expect(span).toBeTruthy();
     expect(button).toBeTruthy();
+  });
+
+  it("shows line-through on span when done is true", () => {
+    const { span } = setup({ todo: { ...sampleTodo, done: true } });
+    expect(span).toHaveStyle("text-decoration: line-through;");
+  });
+
+  it("does not show line-through on span when done is false", () => {
+    const { span } = setup({ todo: { ...sampleTodo, done: false } });
+    expect(span).not.toHaveStyle("text-decoration: line-through;");
   });
 });
