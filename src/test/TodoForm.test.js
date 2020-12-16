@@ -3,10 +3,28 @@ import { fireEvent, render } from "@testing-library/react";
 import TodoForm from "../components/TodoForm";
 
 describe("<TodoForm />", () => {
+  const setup = (props = {}) => {
+    const utils = render(<TodoForm {...props} />);
+    const { getByText, getByPlaceholderText } = utils;
+    const input = getByPlaceholderText("할 일을 입력하세요"); // input 이 있는지 확인
+    const button = getByText("등록"); // button이 있는지 확인
+    return {
+      ...utils,
+      input,
+      button,
+    };
+  };
+
   it("has input and a button", () => {
-    const { getByText, getByPlaceholderText } = render(<TodoForm />);
-    getByPlaceholderText("할 일을 입력하세요"); // input 이 있는지 확인
-    getByText("등록"); // button 이 있는지 확인
+    // [방법 1]
+    // const { getByText, getByPlaceholderText } = setup();
+    // getByPlaceholderText("할 일을 입력하세요"); // input 이 있는지 확인
+    // getByText("등록"); // button 이 있는지 확인
+
+    // [방법 2]
+    const { input, button } = setup();
+    expect(input).toBeTruthy();
+    expect(button).toBeTruthy();
   });
 
   it("changes input", () => {
