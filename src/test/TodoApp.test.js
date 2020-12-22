@@ -33,7 +33,7 @@ describe("<TodoApp/>", () => {
     expect(todoText).toHaveStyle("text-decoration: line-through;");
     fireEvent.click(todoText);
     expect(todoText).not.toHaveStyle("text-decoration: line-through;");
-    fireEvent.click(TodoText);
+    fireEvent.click(todoText);
     expect(todoText).toHaveStyle("text-decoration: line-through;");
     fireEvent.click(todoText);
   });
