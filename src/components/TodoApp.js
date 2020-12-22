@@ -20,28 +20,41 @@ const TodoApp = () => {
 
   const onInsert = useCallback(
     (text) => {
-      setTodos(todos.concat({ id: nextId.current, text, done: false }));
-
-      // nextId 값에 1 더하기
+      //   setTodos(todos.concat({ id: nextId.current, text, done: false }));
+      setTodos((todos) =>
+        todos.concat({ id: nextId.current, text, done: false })
+      );
       nextId.current += 1;
     },
-    [todos]
+    // [todos]
+    []
   );
 
   const onToggle = useCallback(
     (id) => {
-      setTodos(
+      //   setTodos(
+      //     todos.map((todo) =>
+      //       todo.id === id ? { ...todo, done: !todo.done } : todo
+      //     )
+      //   );
+      setTodos((todos) =>
         todos.map((todo) =>
           todo.id === id ? { ...todo, done: !todo.done } : todo
         )
       );
     },
-    [todos]
+    // [todos]
+    []
   );
 
-  const onRemove = useCallback((id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  }, []);
+  const onRemove = useCallback(
+    (id) => {
+      //   setTodos(todos.filter((todo) => todo.id !== id));
+      setTodos((todos) => todos.filter((todo) => todo.id !== id));
+    },
+    // [todos]
+    []
+  );
 
   return (
     <>
