@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
@@ -15,9 +15,22 @@ const TodoApp = () => {
       done: true,
     },
   ]);
+
+  const nextId = useRef(3); // 새로 추가 할 항목에서 사용 할 id
+
+  const onInsert = useCallback(
+    (text) => {
+      setTodos(todos.concat({ id: nextId.current, text, done: false }));
+
+      // nextId 값에 1 더하기
+      nextId.current += 1;
+    },
+    [todos]
+  );
+
   return (
     <>
-      <TodoForm data-testid="helloworld" />
+      <TodoForm data-testid="helloworld" onInsert={onInsert} />
       <TodoList todos={todos} />
     </>
   );
